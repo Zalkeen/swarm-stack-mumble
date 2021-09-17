@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  daemon:
+    image: zalkeen/murmur:armhf
+    ports:
+      - 64738:64738
+      - 64738:64738/udp
+    configs:
+      - source: config
+        target: /etc/murmur.ini
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./volumes/data:/data
+    environment:
+      - TZ=UTC
+configs:
+  config:
+    file: ./volumes/murmur.ini
+
